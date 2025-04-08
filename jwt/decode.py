@@ -34,3 +34,4 @@ except jwt.exceptions.InvalidSignatureError:
 
 except Exception as e:
     print(e)
+
