@@ -6,7 +6,7 @@
 ```bash
   export SECRET_KEY="your key"
 ```
-> For this example, the secret key in [decode.py](./jwt/decode.py) is ***TESTEEE***
+> For this example, the secret key in [decode.py](./decode.py) is ***TESTEEE***
 
 2. Run
 ```bash
