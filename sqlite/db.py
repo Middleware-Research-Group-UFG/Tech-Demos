@@ -55,5 +55,22 @@ def create_model(model):
         except Exception as e:
             return f"Error: {e}"
 
-
-
+def create_session(session):
+    with sqlite3.connect(db) as connection:
+        connection.execute("PRAGMA foreign_key = ON")
+        cursor = connection.cursor() 
+        try:
+            participants = session['participants']
+            del session['participants']
+            query = f"""INSERT INTO Session {tuple(session.keys())}
+                            VALUES {tuple(session.values())}"""
+            cursor.execute(query)
+            session_id = cursor.lastrowid
+            for participant in participants:
+                query = f"""INSERT INTO Participant
+                                VALUES {tuple(participant.values()) + (session_id,)}"""
+                cursor.execute(query)
+            return "Session created successfully!"
+        
+        except Exception as e:
+            return f"Error: {e}"
