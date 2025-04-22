@@ -37,9 +37,9 @@ CREATE TABLE Session
 	Id INTEGER PRIMARY KEY,
 	Creator VARCHAR(20),
 	ModelId INTEGER,
-	CreationDate VARCHAR(24) NOT NULL CHECK (length(CreationDate) <= 24),
-	StartDate VARCHAR(24) NOT NULL CHECK (length(StartDate) <= 24),
-	ExpirationDate VARCHAR(24) NOT NULL CHECK (length(ExpirationDate) <= 24),
+	CreationDate TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	StartDate TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	ExpirationDate TEXT NOT NULL DEFAULT (datetime('now', '+1 day')),
 	FOREIGN KEY (Creator) REFERENCES User (Tag) ON DELETE CASCADE,
 	FOREIGN KEY (ModelId) REFERENCES Model (Id) ON DELETE CASCADE
 );
