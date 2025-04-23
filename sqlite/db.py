@@ -9,7 +9,7 @@ def create_user(user):
         cursor = connection.cursor()
         try:
             query = f"""INSERT INTO User 
-                           VALUES ("{user['tag']}", "{user['name']}", "{user['email']}", "{user['password']}")"""
+                           VALUES {tuple(user.values())}"""
             cursor.execute(query)
             return f"User {user['tag']} created successfully!"
 
