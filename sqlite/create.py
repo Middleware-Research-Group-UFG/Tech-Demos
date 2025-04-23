@@ -3,14 +3,14 @@ from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 user1 = {
-    "tag": "cyber_bob",
+    "tag": "cyber_bob2",
     "name": "Bob",
     "email": "rbcmlproject@gmail.com",
     "password": "hello_world"
 }
 
 user2 = {
-    "tag": "cyber_alice",
+    "tag": "cyber_alice2",
     "name": "Alice",
     "email": "rbcmlproject@gmail.com",
     "password": "HeLl0_w0rLd!"
