@@ -48,7 +48,7 @@ participant2 = {
 }
 
 session1 = {
-    "creator": 2,
+    "creator": "cyber_alice",
     "modelId": 1,
     "expirationDate": str(datetime.now(ZoneInfo("UTC")) + timedelta(days=3))[0:19],
     "participants": [participant1, participant2]
