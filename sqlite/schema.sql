@@ -9,28 +9,8 @@ CREATE TABLE Model
 (
 	Id INTEGER PRIMARY KEY,
 	Name VARCHAR(64) NOT NULL CHECK (length(Name) <= 64),
-	Description VARCHAR(256) NOT NULL CHECK (length(Description) <= 256)
-);
-CREATE TABLE Capability
-(
-	Id INTEGER PRIMARY KEY,
-	SVideo BOOLEAN,
-	RVideo BOOLEAN,
-	SAudio BOOLEAN,
-	RAudio BOOLEAN,
-	SString BOOLEAN,
-	RString BOOLEAN,
-	UNIQUE (SVideo, RVideo, SAudio, RAudio, SString, RString)
-);
-CREATE TABLE Role
-(
-	Id INTEGER PRIMARY KEY,
-	Name VARCHAR(20) NOT NULL CHECK (length(Name) <= 20),
-	ModelId INTEGER,
-	CapabilityId INTEGER,
-	FOREIGN KEY (ModelId) REFERENCES Model (Id) ON DELETE CASCADE,
-	FOREIGN KEY (CapabilityId) REFERENCES Capability (Id) ON DELETE CASCADE,
-	UNIQUE (Name, ModelId)
+	Description VARCHAR(256) NOT NULL CHECK (length(Description) <= 256),
+	Definition TEXT
 );
 CREATE TABLE Session
 (
@@ -40,16 +20,7 @@ CREATE TABLE Session
 	CreationDate TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	StartDate TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	ExpirationDate TEXT NOT NULL DEFAULT (datetime('now', '+1 day')),
+	Participants TEXT,
 	FOREIGN KEY (Creator) REFERENCES User (Tag) ON DELETE CASCADE,
 	FOREIGN KEY (ModelId) REFERENCES Model (Id) ON DELETE CASCADE
-);
-CREATE TABLE Participant
-(
-	RoleId INTEGER,
-	UserTag VARCHAR(20),
-	SessionId INTEGER,
-	FOREIGN KEY (RoleId) REFERENCES Role (Id) ON DELETE CASCADE,
-	FOREIGN KEY (UserTag) REFERENCES User (Tag) ON DELETE CASCADE,
-	FOREIGN KEY (SessionId) REFERENCES Session (Id) ON DELETE CASCADE,
-	UNIQUE (RoleId, UserTag, SessionId)
 );
