@@ -10,7 +10,7 @@ def create_user(user):
             query = f"""INSERT INTO User 
                            VALUES {tuple(user.values())}"""
             cursor.execute(query)
-            return f"User {user['tag']} created successfully!"
+            return f"User {user['Tag']} created successfully!"
 
         except Exception as e:
             return f"Error: {e}"
